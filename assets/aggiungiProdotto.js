@@ -2,11 +2,11 @@ const dataURL = "https://striveschool-api.herokuapp.com/api/product/";
 const API_KEY = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWVhY2IyMjJkN2IxMTAwMTkwZTZkYmUiLCJpYXQiOjE3MDk4ODYyNDIsImV4cCI6MTcxMTA5NTg0Mn0.drAXcb5tP2nW2hONu49Az_rqJmxEKWIQfk0K5Nx0zDM";
 
 
-const title = document.getElementById('title');
+
 const nameInput = document.getElementById('name');
-const brandInput = document.getElementById('brand');
+const BrandInput = document.getElementById('Brand');
 const imageUrlInput = document.getElementById('imageUrl');
-const descriptionInput = document.getElementById('description');
+const DescrizioneInput = document.getElementById('Descrizione');
 const priceInput = document.getElementById('price');
 const deleteBtn = document.getElementById('deleteBtn');
 const submitBtn = document.getElementById('btnSubmit');
@@ -17,10 +17,10 @@ window.addEventListener('load', function () {
     const dettagli = new URLSearchParams(location.search);
     id = dettagli.get('id');
     if (id) {
-        title.innerText = 'Modifica Prodotto';
+        this.name.innerText = 'Modifica Prodotto';
         searchProduct(id);
     } else {
-        title.innerText = 'Aggiungi Prodotto';
+        this.name.innerText = 'Aggiungi Prodotto';
         deleteBtn.style.display = 'none';
     }
 });
@@ -46,41 +46,29 @@ const loadProducts = async () => {
 
 const form = (prodotto) => {
     nameInput.value = prodotto.name;
-    brandInput.value = prodotto.brand;
+    BrandInput.value = prodotto.Brand;
     imageUrlInput.value = prodotto.imageUrl;
     priceInput.value = prodotto.price;
-    descriptionInput.value = prodotto.description;
+    DescrizioneInput.value = prodotto.Descrizione;
 }
 
 
 submitBtn.addEventListener('click', function (e) {
     e.preventDefault();
+    console.log('Pulsante cliccato');
     const name = nameInput.value;
-    const brand = brandInput.value;
+    const Brand = BrandInput.value;
     const imageUrl = imageUrlInput.value;
     const price = priceInput.value;
-    const description = descriptionInput.value;
+    const Descrizione = DescrizioneInput.value;
 
-    const prodotto = { name, brand, imageUrl, price, description };
+    const prodotto = { name, Brand, imageUrl, price, Descrizione };
     if (id) {
         modifyprodotto(prodotto);
     } else {
         aggiungiProd(prodotto);
     }
 });
-
-
-const cardData = [
-    {
-        name: " X17 nokia",
-        brand: "Dell",
-        description: "Display da 17,3 pollici; FHD (1920 x 1080) a 165Hz 3ms o 360Hz 1ms; 4K (3840x 2160) a 120Hz 4ms\nCPU: Intel i7-12700H o i9-12900HK\nGPU: fino a Nvidia GeForce RTX 3080 Ti\nMemoria: fino a 64 GB DDR5, 4800 MHz\nMemoria: 512GB-4TB M.2, PCIe NVMe a stato solido",
-        imageUrl: "https://i.dell.com/sites/csimages/Product_Imagery/all/fp-aw-laptops-hero-a-1920x1440-v2.png",
-        price: "2700"
-    },
-
-
-]
 
 
 
